@@ -33,9 +33,9 @@ class App extends Component {
        
 
         <Switch>
-          {/* <Route exact path="/" component={Login} />
-          <Route path="/register" component={Register} /> */}
-          <Route exact path="/chat" component={Chat}/> 
+          <Route exact path="/" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/chat" component={Chat}/> 
         </Switch>
         </div>
       </div>

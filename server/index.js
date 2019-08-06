@@ -35,9 +35,9 @@ io.sockets.on("connection", socket => {
   console.log(socket.id)
 
   socket.on('message', userMessage => {
-    const { dummyUser, message } = userMessage
+    const { username, message } = userMessage
     // const { message } = userMessage
-    io.emit("message", `${dummyUser}: ${message}`)
+    io.emit("message", `${username}: ${message}`)
     // io.emit("message", `${message}`)
     // console.log(`${message}`)
   })

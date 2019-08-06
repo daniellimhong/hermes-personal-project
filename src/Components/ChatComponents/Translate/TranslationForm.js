@@ -43,8 +43,8 @@ export default class TranslationForm extends Component {
         />
 
           <select className="Ln-selector" ref="language">
-            <option value="en">English</option>
             <option value="km">Khmer</option>
+            <option value="en">English</option>
             <option value="de">German</option>
             <option value="zh">Chinese (Manderin)</option>
             <option value="tl">Tagalog</option>
@@ -56,10 +56,10 @@ export default class TranslationForm extends Component {
             <option value="it">Italian</option>
             <option value="es">Spanish</option>
             <option value="hi">Hindi</option>
-            <option value="ru">Rusian</option>
+            <option value="ru">Russian</option>
           </select>
           <input className="Translate-button" type="submit" value="Translate" />
-          <button>Send Down</button>
+          
         </form>
       </div>
     );

@@ -11,7 +11,7 @@ class Chat extends Component {
     super(props);
 
     this.state = {
-      dummyUser: "daniel" //dummy username
+      username: "" //dummy username
     };
   }
 
@@ -20,7 +20,7 @@ class Chat extends Component {
       <div className="Chat-container">
         <div>
           <MessageList />
-          <SendContainer dummyUser={this.state.dummyUser}/>
+          <SendContainer username={this.props.user.username}/>
         </div>
       </div>
     );

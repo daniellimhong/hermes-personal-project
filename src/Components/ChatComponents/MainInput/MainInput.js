@@ -12,17 +12,28 @@ export default class MainInput extends Component {
     this.state = {
         message: ""
     };
+    this.translationToInput = this.translationToInput.bind(this);
+  }
+
+  translationToInput(){
+      this.setState({
+          message: this.props.output
+      })
   }
 
   render() {
     const { message } = this.state;
-    const { dummyUser } = this.props;
+    const { username } = this.props;
+    // console.log(username);
     return (
       <div>
+          <button
+          onClick={this.translationToInput}
+          >send down</button>
         <form
           onSubmit={e => {
             e.preventDefault();
-            socket.emit("message", { message, dummyUser });
+            socket.emit("message", { message, username });
             this.setState({
               message: ""
             });
@@ -35,11 +46,11 @@ export default class MainInput extends Component {
             type="text"
             onChange={e => this.setState({ message: e.target.value })}
             value={message}
+            placeholder="Type message here..."
           />
           <button 
           className="Send-button">
-            Send
-            {/* <img src={sendIcon} alt="send" /> */}
+            <img src={sendIcon} alt="send" />
           </button>
         </form>
       </div>
