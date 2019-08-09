@@ -40,6 +40,9 @@ export default class SendContainer extends Component {
         <MainInput  
         username={username} 
         output={this.state.output}
+        socket={this.props.socket}
+        chatId={this.props.chatId}
+        userId={this.props.userId}
         />
       </div>
     );

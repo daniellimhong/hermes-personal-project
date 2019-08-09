@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import socketIOclient from "socket.io-client";
 import sendIcon from '../../icons/sent-mail.svg'
 import "../SendContainer/SendContainer.scss"
 
-const socket = socketIOclient("http://localhost:4000");
 
 export default class MainInput extends Component {
   constructor(props) {
@@ -24,6 +22,8 @@ export default class MainInput extends Component {
   render() {
     const { message } = this.state;
     const { username } = this.props;
+    const { chatId } = this.props;
+    const { userId } = this.props;
     // console.log(username);
     return (
       <div>
@@ -33,7 +33,7 @@ export default class MainInput extends Component {
         <form
           onSubmit={e => {
             e.preventDefault();
-            socket.emit("message", { message, username });
+            this.props.socket.emit("message", { chatId, message, username, userId });
             this.setState({
               message: ""
             });
@@ -47,6 +47,7 @@ export default class MainInput extends Component {
             onChange={e => this.setState({ message: e.target.value })}
             value={message}
             placeholder="Type message here..."
+            autocomplete="off"
           />
           <button 
           className="Send-button">

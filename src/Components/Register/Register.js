@@ -12,16 +12,12 @@ class Register extends Component {
       user: null,
       typedUser: "",
       password: "",
-      email: "",
-      loading: false
+      email: ""
     };
     this.register = this.register.bind(this);
   }
 
   register() {
-    this.setState({
-      loading: true
-    });
     axios
       .post("/api/register", {
         username: this.state.typedUser,
@@ -30,9 +26,7 @@ class Register extends Component {
       })
       .then(res => {
         this.props.setUser(res.data);
-        this.setState({
-          loading: true
-        });
+        this.props.history.push("/");
       });
   }
 
@@ -63,6 +57,7 @@ class Register extends Component {
           placeholder="email"
         />
         <input
+          type="password"
           name="password"
           value={password}
           onChange={event =>
@@ -77,7 +72,7 @@ class Register extends Component {
     );
   }
 }
-
+//! Notes: need to create if statements to account for username errors (username already taken)
 function mapReduxStateToProps(reduxState){
     return reduxState
 }

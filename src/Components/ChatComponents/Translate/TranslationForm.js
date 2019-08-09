@@ -40,6 +40,7 @@ export default class TranslationForm extends Component {
         type="text"
         placeholder="Output"
         value={output}
+        autocomplete="off"
         />
 
           <select className="Ln-selector" ref="language">

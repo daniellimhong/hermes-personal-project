@@ -1,0 +1,12 @@
+.Sidebar-container{
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 2px solid black;
+    background: grey;
+    z-index: 1;
+    // overflow-y: scroll; 
+    //* allow scrolling, maybe move to roomList component so UserCard stays fixed
+}

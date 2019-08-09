@@ -13,15 +13,12 @@ class Login extends Component {
     //   user: null,
       typedUser: "",
       password: "",
-      loading: false
+  
     };
     this.login = this.login.bind(this);
   }
 
   login() {
-    this.setState({
-      loading: true
-    });
     axios
       .post("/api/login", {
         username: this.state.typedUser,
