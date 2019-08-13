@@ -8,7 +8,7 @@ import axios from "axios";
 import "./Chat.scss";
 //* Sockets
 import socketIOclient from "socket.io-client";
-const socket = socketIOclient("http://localhost:4000");
+const socket = socketIOclient("http://localhost:4000"); 
 
 class Chat extends Component {
   constructor(props) {
@@ -24,19 +24,21 @@ class Chat extends Component {
     axios.post("/api/user_session").then(res => {
       this.props.setUser(res.data);
     });
+    this.getUserProfile();
+  }
+
+  getUserProfile = () => {
     axios.get("/api/me").then(res => {
       this.setState({
         userProfile: res.data
       });
     });
-  }
+  };
 
   render() {
-    // console.log(this.props.user.username)
     console.log(this.state.userProfile, this.state.chatId);
     const { user } = this.props;
     const { userProfile, chatId } = this.state;
-    // console.log(user.user_id)
 
     let mappedRooms = userProfile.map((room, index) => { //! each button can now change state of chatId
       return (
@@ -51,9 +53,10 @@ class Chat extends Component {
                   this.setState({
                     chatId: room["chat_id"]
                   });
+                  alert("In chat: " + room["chat_name"] + " - #" + room["chat_id"])
                 }}
               >
-                {room["chat_name"]}
+                {room["chat_name"] + " - id: #" + room["chat_id"]}
               </button>
             </li>
           </ul>
@@ -68,9 +71,11 @@ class Chat extends Component {
             <div>
               <SideBar
                 username={user.username}
+                userId={user.user_id}
                 userProfile={userProfile}
                 socket={socket}
                 mappedRooms={mappedRooms}
+                getUserProfileFn={this.getUserProfile}
               />
               <MessageList 
               socket={socket} 
@@ -85,7 +90,10 @@ class Chat extends Component {
               />
             </div>
           ) : (
-            <div className="Error-messsage-1">Login again!</div>
+            <div onClick={() => {
+              this.props.history.push("/");
+            }} 
+            className="Error-messsage-1">Uh-oh, looks looks like something went wrong here! Press on this to log back in!</div>
           )}{" "}
           {/* FIX FOR CONDITIONAL RENDERING FOR USER */}
         </div>

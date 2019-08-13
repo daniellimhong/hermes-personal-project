@@ -1,9 +1,7 @@
 import React, { Component } from "react";
+import "../SideBar.scss";
 
 export default class RoomList extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return <div>{this.props.mappedRooms}</div>;

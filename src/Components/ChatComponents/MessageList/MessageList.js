@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import '../Chat.scss'
+import ReactDOM from 'react-dom';
 import axios from "axios";
-
-//! ComponentDidMount the messages 
-//! pass down state of ChatId to render specific chatroom
 
 export default class MessageList extends Component {
   constructor(props) {
@@ -20,6 +18,12 @@ export default class MessageList extends Component {
     });
   }
 
+  componentWillUpdate(){
+    //* Cancels out auto scroll when already scrolled up
+    const node = ReactDOM.findDOMNode(this);
+    this.shouldScrollToBottom = node.scrollTop + node.clientHeight + 100 >= node.scrollHeight; 
+  }
+
   componentDidUpdate(prevProps){
     if (prevProps.chatId !== this.props.chatId) {
       axios.get(`/api/${this.props.chatId}`)
@@ -33,14 +37,21 @@ export default class MessageList extends Component {
         })
         console.log(res.data);
       })
+    };
+
+    //*Auto-scroll
+    if (this.shouldScrollToBottom){
+      const node = ReactDOM.findDOMNode(this);
+      node.scrollTop = node.scrollHeight;
     }
+    
   }
 
   render() {
     const { returnedMessages } = this.state;
     console.log(this.state.returnedMessages)
     return (
-      <div>
+      <div className="Message-list">
         {returnedMessages.map(message => {
           return (
             <div className="message">

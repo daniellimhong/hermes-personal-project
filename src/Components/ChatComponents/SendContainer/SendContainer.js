@@ -29,7 +29,6 @@ export default class SendContainer extends Component {
 
   render() {
     const { username } = this.props
-    // console.log(username)
 
     return (
       <div className="Send-container">

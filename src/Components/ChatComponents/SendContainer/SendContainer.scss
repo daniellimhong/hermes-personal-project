@@ -1,5 +1,9 @@
 // .Send-container {
-//   // display: flex;
+//   width: 100%;
+//   height: 150px;
+//   border: 1px solid black;
+//   position: absolute;
+//   bottom: 0;
 //   // justify-content: center;
 
 //   .Main-send-input {
@@ -10,6 +14,8 @@
 //   .Send-button {
 //     width: 100px;
 //     height: 100px;
+//     bottom: 0;
+//     right: 0;
 //   }
 
 //   .Translate-form {
@@ -28,4 +34,68 @@
 //       height: inherit;
 //     }
 //   }
+
+//   @media screen and (max-width: 425px) {
+
+//     .Send-button {
+//         width: 50px;
+//         height: 50px;
+//       }
+
+//   }
 // }
+
+@media screen and (max-width: 425px) {
+  .Send-container {
+    width: 100%;
+    height: 145px;
+    // border: 1px solid black;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+
+    .Translate-form {
+      .Translate-input {
+        width: 175px;
+        font-size: 20px;
+        border: 1px solid black;
+      }
+      .Translate-output {
+        font-size: 20px;
+        border: 1px solid black;
+      }
+      .Ln-selector {
+        font-size: 20px;
+        border: 1px solid black;
+      }
+      .Translate-button {
+        font-size: 20px;
+        border: 1px solid black;
+      }
+    }
+
+    .Send-down-button {
+      border: 1px solid black;
+    }
+
+    .Main-form {
+      border: 1px solid black;
+      .Main-send-input {
+        bottom: 0px;
+        border: 1px solid black;
+      }
+      .Send-button {
+        right: 0px;
+        bottom: 0px;
+        height: 70px;
+        width: 70px;
+        cursor: pointer;
+        position: absolute;
+        padding-top: 50px;
+        padding-right: 15px;
+      }
+    }
+  }
+}

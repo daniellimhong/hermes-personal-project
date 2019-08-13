@@ -18,7 +18,6 @@ export default class TranslationForm extends Component {
     let textToTranslate = this.refs.textToTranslate.value;
     let langauge = this.refs.language.value;
     this.props.translate(textToTranslate, langauge);
-    // console.log(this.props.output)
   }
 
   
@@ -37,10 +36,11 @@ export default class TranslationForm extends Component {
           />
         
         <input 
+        className="Translate-output"
         type="text"
         placeholder="Output"
         value={output}
-        autocomplete="off"
+        autoComplete="off"
         />
 
           <select className="Ln-selector" ref="language">

@@ -10,15 +10,14 @@ class Login extends Component {
     super(props);
 
     this.state = {
-    //   user: null,
+      //   user: null,
       typedUser: "",
-      password: "",
-  
+      password: ""
     };
-    this.login = this.login.bind(this);
+    // this.login = this.login.bind(this);
   }
 
-  login() {
+  login = () => {
     axios
       .post("/api/login", {
         username: this.state.typedUser,
@@ -28,7 +27,11 @@ class Login extends Component {
         this.props.setUser(res.data);
         this.props.history.push("/chat");
       });
-  }
+  };
+
+  goToRegister = () => {
+    this.props.history.push("/register");
+  };
 
   universalChangeHandler(property, value) {
     this.setState({
@@ -41,43 +44,63 @@ class Login extends Component {
     // console.log('From redux ===>', this.props.user)
 
     return (
-      <div className="Login-container">
-        <input
-          name="typedUser"
-          value={typedUser}
-          onChange={event =>
-            this.universalChangeHandler(event.target.name, event.target.value)
-          }
-          placeholder="username"
-        />
-        <input
-          name="password"
-          value={password}
-          type="password"
-          onChange={event =>
-            this.universalChangeHandler(event.target.name, event.target.value)
-          }
-          placeholder="password"
-        />
-        <div>
-          <button onClick={this.login}>Login</button>
+      <div className="Login-body">
+        <div className="Header-container">
+          <h2 className="Main-header">Hermes</h2>
+        </div>
+        <div className="Text-container">
+        <p className="Landing-description">
+            On-the-fly chatrooms with translation features. Goodbye, language
+            barriers.
+          </p>
+        </div>
+        <div className="Login-container">
+          <input
+          className="Input"
+            name="typedUser"
+            value={typedUser}
+            onChange={event =>
+              this.universalChangeHandler(event.target.name, event.target.value)
+            }
+            placeholder="username"
+          />
+          <input
+          className="Input"
+            name="password"
+            value={password}
+            type="password"
+            onChange={event =>
+              this.universalChangeHandler(event.target.name, event.target.value)
+            }
+            placeholder="password"
+          />
+          <div>
+            <button className="Button" onClick={this.login}>Login</button>
+            <nav className="Nav">
+              <section>
+              <p>New user? </p>
+              <p className="Register-here" onClick={this.goToRegister}>Register here</p>
+              </section>
+            </nav>
+          </div>
+
         </div>
       </div>
     );
   }
 }
 
-function mapReduxStateToProps(reduxState){
-    return reduxState
+function mapReduxStateToProps(reduxState) {
+  return reduxState;
 }
 
 const mapDispatchToProps = {
-    setUser
-}
+  setUser
+};
 
 const connectInvoked = connect(
-    mapReduxStateToProps,
-    mapDispatchToProps
+  mapReduxStateToProps,
+  mapDispatchToProps
 );
 
 export default withRouter(connectInvoked(Login));

@@ -59,7 +59,16 @@ module.exports = {
 
   userSession: (req, res, next) => {
       res.status(200).send(req.session.user)
+  },
+
+  updateProfilePic: (req, res, next) => {
+    const db = req.app.get("db");
+    const { profile_picture } = req.body;
+    const { user_id } = req.session.user;
+
+    db.update_profile_picture([profile_picture, user_id])
+    .then( newPictureUrl => {
+      res.status(200).send(newPictureUrl)
+    })
   }
-
-
 };

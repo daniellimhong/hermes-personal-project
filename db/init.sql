@@ -8,8 +8,7 @@ create table users (
     username varchar(32) not null,
     password text not null,
     email text not null,
-    profile_picture text,
-    location text
+    profile_picture text default('https://img.icons8.com/ios-filled/100/000000/cat-profile.png')
 );
 
 create table chat_rooms (
@@ -24,6 +23,7 @@ create table users_in_chat_rooms (
 );
 
 create table messages (
+    msg_id serial primary key,
     user_id int references users(user_id),
     chat_id integer references chat_rooms(chat_id),
     content text,

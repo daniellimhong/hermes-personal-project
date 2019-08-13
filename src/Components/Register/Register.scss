@@ -1,7 +1,7 @@
-.Login-body {
+.Register-body {
   height: 100%;
   width: 100%;
-  // top: 0;
+  top: 0;
   position: absolute;
   background-color: hsl(192°, 100%, 68%);
   text-align: center;
@@ -11,17 +11,14 @@
   align-items: center;
   font-family: "Roboto", sans-serif;
 
-  .Main-header {
+  .Title{
     color: hsl(0°, 0%, 100%);
-    font-size: 52px;
+    padding: 20px 0px 20px 0px;
+    font-size: 30px;
+    font-weight: 300;
   }
 
-  .Landing-description {
-    color: hsl(0°, 0%, 100%);
-    padding: 30px 0px 30px 0px;
-  }
-
-  .Login-container {
+  .Register-container {
     background-color: hsl(0°, 0%, 100%);
     width: 300px;
     height: 300px;
@@ -30,7 +27,7 @@
     display: inherit;
     flex-direction: inherit;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: inherit;
 
     .Input {
       width: 250px;
@@ -55,40 +52,12 @@
       width: 100px;
       font-size: 16px;
     }
+
     .Nav {
       padding-top: 10px;
-
-      .Register-here {
+      .Login-here {
         text-decoration: underline;
       }
-    }
-  }
-
-  @media screen and (max-width: 425px) {
-    .Main-header {
-      font-size: 64px;
-    }
-
-    .Landing-description {
-      font-size: 24px;
-      padding: 30px 10px 30px 10px
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
-    Main-header {
-      font-size: 50px;
-    }
-
-    .Landing-description {
-      font-size: 18px;
-    }
-    .Input {
-      font-size: 12px;
-    }
-
-    .Input::placeholder {
-      font-size: 12px;
     }
   }
 }

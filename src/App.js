@@ -20,18 +20,6 @@ class App extends Component {
     return (
       <div className="App">  
         <div className="Landing-page">
-        <header>
-          <div>
-            <NavLink exact to="/" activeClassName="active">
-              Home
-            </NavLink>
-            <NavLink exact to="/register" activeClassName="active">
-              Register
-            </NavLink>
-          </div>
-        </header>
-       
-
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />

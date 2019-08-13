@@ -11,8 +11,8 @@ const socketsManager = require("./controller/socketsManager");
 
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-const { login, register, userSession, logout } = require('./controller/userController');
-const { getUserInfo, getChatMessages, addNewMessage } = require('./controller/chatController');
+const { login, register, userSession, logout, updateProfilePic } = require('./controller/userController');
+const { getUserInfo, getChatMessages, createNewChatRoom, userAddChat, deleteChatRoom } = require('./controller/chatController');
 
 app.use(express.json());
 
@@ -55,11 +55,14 @@ app.post("/api/login", login);
 app.post("/api/register", register);
 app.post("/api/user_session", userSession);
 app.get("/api/logout", logout);
+app.put("/api/updatePic", updateProfilePic)
 
 //* Chat Endpoints
 app.get("/api/me", getUserInfo); //! WILL SEND BACK ALL USER INFO (user info + chatroom) [initally only chatroom]
 app.get("/api/:chat_id", getChatMessages);
-// app.post("", createNewChat);
+app.post("/api/newChat", createNewChatRoom);
+app.post("/api/userAddChat", userAddChat);
+app.delete("/api/deleteChat/:user_id/:chat_id", deleteChatRoom)
 // app.post("/:chat_id/messages", addNewMessage);
 
 //* Delete chat?

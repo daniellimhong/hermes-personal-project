@@ -3,57 +3,128 @@ import axios from "axios";
 import { setUser } from "../../../../redux/reducer";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import UserIcon from "../../../icons/default-user.svg";
+import "../SideBar.scss";
 
 class UserCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: {}
+      // user: {} Original state, looks like I dont neet it!
+      chatName: "",
+      chatId: "",
+      newChatId: ""
     };
-    this.logout = this.logout.bind(this);
   }
 
-  // componentDidMount(){
-  //! Get user profile info here?
-  // }
-
-  logout() {
-    axios.get("/api/logout").then(res => {
+  logout = () => {
+    axios
+    .get("/api/logout").then(res => {
       this.props.setUser(null);
       this.props.history.push("/");
     });
-  }
-  //! Show profile picture now, if null, show a default picture instead,
-  render() {
-    // console.log(
-    //   this.props.user,
-    //   this.props.userProfile,
-    // );
-    const { userProfile } = this.props;
-    
+  };
 
+  createChat = (e) => {
+    e.preventDefault();
+    axios
+    .post("/api/newChat", {
+      chat_name: this.state.chatName
+    })
+    .then(res => {
+      // console.log(res.data)
+      this.setState({
+        newChatId: res.data[0].chat_id
+      })
+    })
+    .catch( err => console.log(err))
+  };
+
+  addChat = (e) => {
+    e.preventDefault();
+    axios
+    .post("/api/userAddChat", {
+      chat_id: this.state.chatId,
+      user_id: this.props.user.user_id
+    })
+    .then(res => {
+      // console.log(res.data)
+      this.props.getUserProfileFn();
+    });
+  };
+
+  universalChangeHandler = (property, value) => {
+    this.setState({
+      [property]: value
+    });
+  };
+  
+  render() {
+    const { user, userProfile } = this.props;
+    const { chatName, chatId, newChatId } = this.state;
+  
+    // console.log("this is the current state:", chatName, chatId)
+    // console.log(this.state.newChatId)
+    // if (this.props.userProfile[0]){
+    // console.log(this.props.userProfile[0].profile_picture)
+    // }
+   
     return (
-      <div>
-        UserCard Component
-        <div className="img">
-          {/* {
-            (userProfile[0].profile_profile = null ? (
-              <img src={UserIcon} alt="default-user" />
-            ) : 
-            ( //! figure out how to show profile pic
-              <img src={UserIcon} alt="user-picture" />
-            ))
-          }  */}
-        </div>
-        <h3>User: {this.props.user.username}</h3>
-        <button onClick={this.logout}>Sign out</button>
+      
+        <div className="User-card">
+        { 
+        this.props.userProfile[0] ?
+         <img 
+         className="User-picture"
+         src={this.props.userProfile[0].profile_picture}
+         alt="pic"
+         /> 
+         :
+         <></>
+        }
+        <h3 className="Username">{user.username}</h3> <button className="AllUserButton" onClick={this.logout}>Sign out</button>
+       
+        <form className="Create-chat-form">
+          <input 
+          className="Add-chat-name-input"
+          name="chatName"
+          value={chatName}
+          onChange={event =>
+          this.universalChangeHandler(event.target.name, event.target.value)
+          }
+          placeholder="New Chat Name"
+          />
+
+          <button className="AllUserButton" onClick={e => this.createChat(e)}>Create New Chat</button>
+
+          <input 
+          name="newChatId"
+          value={newChatId}
+          placeholder="ID"
+          style={{width: "40px"}}
+          onChange={event => 
+          this.universalChangeHandler(event.target.name, event.target.value)
+          }/>
+
+        </form>
+           {/* User Add Chat Modal */}
+        <form className="Add-chat-form">
+          <input 
+          id=""
+          name="chatId"
+          value={chatId}
+          onChange={event =>
+          this.universalChangeHandler(event.target.name, event.target.value)
+          }
+          placeholder="Add Existing Chat ID"
+          />
+
+          <button className="AllUserButton" onClick={e => this.addChat(e)}>Join Chat</button>
+        </form>
       </div>
     );
   }
 }
-//! Show profile picture, name here
 
 function mapReduxStateToProps(reduxState) {
   return reduxState;
