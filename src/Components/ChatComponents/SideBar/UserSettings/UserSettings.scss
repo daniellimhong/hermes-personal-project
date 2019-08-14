@@ -1,10 +1,33 @@
 .UserSettings-container {
   display: flex;
-  
+  font-family: "Roboto", sans-serif;
 
   .Settings {
     height: 20px;
     width: 20px;
+  }
+
+  .Settings-header{
+    font-size: 24px;
+  }
+  .Update-user-box{
+    .Update-input{
+      border: 1px solid black;
+      height: 20px;
+    }
+  
+    .Update-pic{
+      border: 1px solid black;
+      width: 100px;
+      height: 30px;
+    }
+  }
+  
+
+  .Close-settings{
+    border: 1px solid black;
+    width: 100px;
+    height: 30px;
   }
 }
 
@@ -24,16 +47,55 @@
   }
     .show2 {
       margin: 0 auto;
+      top: 0px;
+      position: absolute;
+      height: 300px;
+      width: 100%;
+      background: white;
+      border: 1px solid black;
+      text-align: center;
+
+      // margin: 0 auto;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      // flex-direction: column;
+      z-index: 3;
+    }
+    .dontShow {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .UserSettings-container {
+    display: flex;
+
+    .Settings-button{
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 5px 5px 0px 0px;
+
+    .Settings-img {
+      height: 45px;
+      width: 45px;
+    }
+  }
+    .show2 {
+      margin: 0 auto;
       position: relative;
       height: 200px;
       width: 100%;
       background: white;
       border: 1px solid black;
       // margin: 0 auto;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
       z-index: 3;
     }
     .dontShow {

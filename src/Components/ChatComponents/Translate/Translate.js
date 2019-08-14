@@ -5,7 +5,6 @@ import "../SendContainer/SendContainer.scss"
 
 export default class Translate extends Component {
     render(){
-        console.log(this.props.output)
         return (
             <div>
                 <TranslationForm 

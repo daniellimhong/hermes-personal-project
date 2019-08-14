@@ -1,60 +1,60 @@
-// .Send-container {
-//   width: 100%;
-//   height: 150px;
-//   border: 1px solid black;
-//   position: absolute;
-//   bottom: 0;
-//   // justify-content: center;
+.Translate-form {
+  .Translate-input {
+    width: 175px;
+    font-size: 20px;
+    border: 1px solid black;
+  }
+  .Translate-output {
+    font-size: 20px;
+    border: 1px solid black;
+  }
+  .Ln-selector {
+    font-size: 20px;
+    border: 1px solid black;
+  }
+  .Translate-button {
+    font-size: 20px;
+    border: 1px solid black;
+  }
+}
 
-//   .Main-send-input {
-//     width: 90%;
-//     height: 50px;
-//   }
+.Send-down-button {
+  border: 1px solid black;
+}
 
-//   .Send-button {
-//     width: 100px;
-//     height: 100px;
-//     bottom: 0;
-//     right: 0;
-//   }
-
-//   .Translate-form {
-//     height: 50px;
-
-//     .Translate-input {
-//       width: 70%;
-//       height: inherit;
-//     }
-
-//     .Ln-selector {
-//       height: inherit;
-//     }
-
-//     .Translate-button {
-//       height: inherit;
-//     }
-//   }
-
-//   @media screen and (max-width: 425px) {
-
-//     .Send-button {
-//         width: 50px;
-//         height: 50px;
-//       }
-
-//   }
-// }
+.Main-form {
+  // border: 1px solid black;
+  bottom: 0;
+ 
+  .Main-send-input {
+    bottom: 0px;
+    // position: absolute;
+    border: 1px solid black;
+  }
+  .Send-button {
+    // right: 0px;
+    bottom: 25px;
+    height: 98px;
+    width: 100px;
+    cursor: pointer;
+    position: absolute;
+    border: 1px solid black;
+    background-color: hsl(192°, 100%, 68%);
+    // padding-top: 50px;
+    // padding-right: 15px;
+  }
+}
 
 @media screen and (max-width: 425px) {
   .Send-container {
-    width: 100%;
-    height: 145px;
-    // border: 1px solid black;
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: "Roboto", sans-serif;
+    // width: 100%;
+    // height: 145px;
+    // // border: 1px solid black;
+    // position: absolute;
+    // bottom: 0;
+    // display: flex;
+    // flex-direction: column;
+    // font-family: "Roboto", sans-serif;
 
     .Translate-form {
       .Translate-input {
@@ -82,20 +82,25 @@
 
     .Main-form {
       border: 1px solid black;
+      bottom: 0;
+
       .Main-send-input {
         bottom: 0px;
         border: 1px solid black;
       }
       .Send-button {
-        right: 0px;
-        bottom: 0px;
-        height: 70px;
-        width: 70px;
+        // right: 0px;
+        
+        height: 102px;
+        width: 80px;
         cursor: pointer;
         position: absolute;
-        padding-top: 50px;
-        padding-right: 15px;
+        bottom: -28px;
       }
     }
   }
+
+//   @media screen and (max-width: 1042px){
+//   
+//   }
 }

@@ -20,6 +20,7 @@ export default class UserSettings extends Component {
       profile_picture: this.state.profilePic,
       user_id: this.props.userId
     });
+    this.props.getUserProfileFn();
   };
 
   toggleSettings = () => {
@@ -47,6 +48,7 @@ export default class UserSettings extends Component {
   render() {
     const { profilePic } = this.state;
     const { userProfile, getUserProfileFn } = this.props;
+    console.log(this.state.profilePic)
 
     let mappedRoomsToDelete = userProfile.map((room, index) => {
       return (
@@ -54,7 +56,7 @@ export default class UserSettings extends Component {
           <ul>
             <li>
               <button
-                className=""
+                className="ToDelete"
                 onClick={e => {
                   e.preventDefault();
                   let chatId = room["chat_id"];
@@ -93,13 +95,14 @@ export default class UserSettings extends Component {
 
         <div className={this.state.modalOpened ? "show2" : "dontShow"}>
           <div className="Delete-chat-box">
-            <h4>Click the following chat rooms to delete:</h4>
+            <h4 className="Settings-header">Click the following chat rooms to delete:</h4>
             {mappedRoomsToDelete}
           </div>
 
           <div className="Update-user-box">
             <form>
               <input
+                className="Update-input"
                 name="profilePic"
                 value={profilePic}
                 placeholder="New Profile Picture Link"
@@ -109,11 +112,12 @@ export default class UserSettings extends Component {
                     event.target.value)}
               />
               <button
+              className="Update-pic"
               onClick={event => this.updateProfilePic(event)}>Update Picture</button>
             </form>
           </div>
 
-          <button onClick={this.toggleSettings}>Close Settings</button>
+          <button className="Close-settings" onClick={this.toggleSettings}>Close Settings</button>
         </div>
       </div>
     );

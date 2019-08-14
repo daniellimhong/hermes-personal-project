@@ -18,13 +18,11 @@ export default class TranslationForm extends Component {
     let textToTranslate = this.refs.textToTranslate.value;
     let langauge = this.refs.language.value;
     this.props.translate(textToTranslate, langauge);
-  }
-
-  
+    this.refs.textToTranslate.value = "";
+    };
 
   render() {
     const { output } = this.props
-    console.log(this.props.output)
     return (
       <div>
         <form className="Translate-form" onSubmit={this.translate}>
